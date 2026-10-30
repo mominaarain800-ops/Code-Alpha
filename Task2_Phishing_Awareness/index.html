@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phishing Awareness Training</title>
+<style>
+:root{--navy:#10243a;--blue:#1769aa;--cyan:#e7f5ff;--gold:#ffd166;--ink:#17212b;--muted:#526171;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f2f6fa;color:var(--ink);line-height:1.6}
+header{background:linear-gradient(120deg,#10243a,#1769aa);color:white;padding:36px 18px}
+.wrap{max-width:900px;margin:auto;padding:0 18px}h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,2.8rem)}header p{max-width:700px}
+main{padding:24px 0}.card{background:white;border-radius:14px;padding:22px;margin:16px 0;box-shadow:0 5px 20px #10243a12}
+h2{color:#124b7a;margin-top:0}.pill{display:inline-block;background:var(--cyan);color:#124b7a;padding:4px 10px;border-radius:20px;font-size:.85rem;font-weight:bold}
+ul{padding-left:22px}.example{border-left:5px solid var(--gold);background:#fff9e8;padding:14px 16px;border-radius:8px}
+button{background:#1769aa;color:white;border:0;border-radius:8px;padding:11px 16px;font-size:1rem;cursor:pointer}button:hover{background:#0e4e82}
+label{display:block;margin:12px 0;padding:10px;background:#f5f8fb;border-radius:8px;cursor:pointer}
+#result{font-weight:bold;margin-top:14px}.good{color:#176b3a}.bad{color:#a22}
+footer{padding:22px 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="pill">CYBER SECURITY • AWARENESS</span>
+<h1>Think Before You Click</h1>
+<p>Phishing Awareness Training: learn how to recognize suspicious messages, protect accounts, and report possible scams.</p>
+</div></header>
+<main class="wrap">
+<section class="card">
+<h2>1. What is phishing?</h2>
+<p>Phishing is a social-engineering attack in which a message or website impersonates a trusted person or organization to trick someone into revealing information, opening a harmful attachment, or taking an unsafe action.</p>
+</section>
+<section class="card">
+<h2>2. Common warning signs</h2>
+<ul>
+<li><strong>Urgency or threats:</strong> “Your account will close in 10 minutes.”</li>
+<li><strong>Unexpected requests:</strong> asks for passwords, one-time codes, payment, or personal information.</li>
+<li><strong>Suspicious sender:</strong> the address is misspelled or does not match the real organization.</li>
+<li><strong>Unusual links:</strong> the visible text and actual destination do not match. Check the domain carefully.</li>
+<li><strong>Unexpected attachments:</strong> especially files you were not expecting.</li>
+<li><strong>Too good to be true:</strong> prizes, refunds, jobs, or rewards that require an immediate click.</li>
+</ul>
+</section>
+<section class="card">
+<h2>3. Example: suspicious message</h2>
+<div class="example">
+<p><strong>Subject:</strong> URGENT! Your student account will be deleted</p>
+<p>“We detected a problem. Open the link and enter your password and verification code immediately to keep your account.”</p>
+</div>
+<p><strong>Why it is suspicious:</strong> it uses pressure, requests credentials and a verification code, and gives no safe way to verify the request independently.</p>
+<p><strong>Safe action:</strong> do not click the link or reply. Open the official website by typing its known address yourself, or contact the organization using a trusted contact method.</p>
+</section>
+<section class="card">
+<h2>4. Social engineering tactics</h2>
+<ul>
+<li><strong>Authority:</strong> pretending to be a manager, teacher, bank, or IT support.</li>
+<li><strong>Fear:</strong> threatening account closure or legal trouble.</li>
+<li><strong>Curiosity:</strong> using sensational subjects or unexpected documents.</li>
+<li><strong>Scarcity/reward:</strong> claiming a limited-time prize or opportunity.</li>
+<li><strong>Familiarity:</strong> impersonating a colleague or friend.</li>
+</ul>
+</section>
+<section class="card">
+<h2>5. Best practices</h2>
+<ul>
+<li>Use multi-factor authentication (MFA) and never share one-time codes.</li>
+<li>Use a password manager and unique passwords for different accounts.</li>
+<li>Verify unusual payment or information requests through a separate trusted channel.</li>
+<li>Keep your operating system, browser, and security software updated.</li>
+<li>Report suspicious messages using your organization’s approved reporting process.</li>
+<li>If you clicked a suspicious link, report it quickly, change affected passwords from a trusted device, and contact IT support.</li>
+</ul>
+</section>
+<section class="card">
+<h2>6. Knowledge check</h2>
+<form id="quiz">
+<p><strong>Q1.</strong> A message asks for your password and one-time code to prevent account closure. What should you do?</p>
+<label><input type="radio" name="q1" value="a"> Reply with the code because the message is urgent.</label>
+<label><input type="radio" name="q1" value="b"> Do not reply; verify through the official website or trusted contact method.</label>
+<p><strong>Q2.</strong> What is a safer way to open your bank’s website?</p>
+<label><input type="radio" name="q2" value="a"> Click the link in an unexpected text message.</label>
+<label><input type="radio" name="q2" value="b"> Use a known bookmark or type the official address yourself.</label>
+<p><strong>Q3.</strong> A colleague emails an unexpected attachment and asks you to enable macros. What is best?</p>
+<label><input type="radio" name="q3" value="a"> Verify with the colleague through a separate channel before opening it.</label>
+<label><input type="radio" name="q3" value="b"> Enable macros immediately.</label>
+<button type="submit">Check Answers</button>
+<div id="result" aria-live="polite"></div>
+</form>
+</section>
+<footer><div>Prepared for cybersecurity learning. This module is educational only; it does not send messages, collect credentials, or track users.</div></footer>
+</main>
+<script>
+document.getElementById('quiz').addEventListener('submit',function(e){
+ e.preventDefault();
+ const answers={q1:'b',q2:'b',q3:'a'};
+ let score=0;
+ for(const [q,a] of Object.entries(answers)){
+  const selected=document.querySelector('input[name="'+q+'"]:checked');
+  if(selected && selected.value===a) score++;
+ }
+ const out=document.getElementById('result');
+ out.textContent='Your score: '+score+'/3. '+(score===3?'Excellent work — you recognized the safe choices.':'Review the warning signs and try again.');
+ out.className=score===3?'good':'bad';
+});
+</script>
+</body>
+</html>
